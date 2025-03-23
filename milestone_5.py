@@ -4,12 +4,12 @@ import random
 class Hangman:
     def __init__(self, word_list, num_lives=5):
         # Initialise the attributes of the class
-        self.word_list = word_list  # List of possible words for the game
-        self.num_lives = num_lives  # Number of lives the player has (default is 5)
-        self.word = random.choice(self.word_list)  # Randomly choose a word from the word list
-        self.word_guessed = ['_' for _ in self.word]  # List of underscores for unguessed letters
-        self.num_letters = len(self.word)  # Number of letters in the word
-        self.list_of_guesses = []  # List of the guesses that have already been tried
+        self.word_list = word_list 
+        self.num_lives = num_lives  
+        self.word = random.choice(self.word_list)  
+        self.word_guessed = ['_' for _ in self.word] 
+        self.num_letters = len(self.word)  
+        self.list_of_guesses = []  
 
     def check_guess(self, guess):
         # This function checks if the guessed letter is in the word and updates the guessed word
@@ -20,14 +20,13 @@ class Hangman:
                     self.word_guessed[i] = guess
         else:
             print(f"Oops! {guess} is not in the word.")
-            self.num_lives -= 1  # Decrease the number of lives if the guess is wrong
+            self.num_lives -= 1  
 
     def display_word(self):
-        # Display the current state of the word with guessed letters
         print("Current word: " + ' '.join(self.word_guessed))
 
     def is_game_over(self):
-        # Check if the game is over (either lost or won)
+        # Check if user either won or lost the game 
         if self.num_lives == 0:
             print("You have lost!")
             return True
@@ -49,16 +48,15 @@ def ask_for_input(game):
             break
 
 def play_game(word_list):
-    num_lives = 5  # Set the number of lives
-    game = Hangman(word_list, num_lives)  # Create an instance of the Hangman class
+    num_lives = 5 
+    game = Hangman(word_list, num_lives)  
 
-    # Main game loop
+    # Hangman main game loop 
     while not game.is_game_over():
         game.display_word()  # Display the word with underscores
         ask_for_input(game)  # Ask the player for a guess
 
-# List of words for the game
-word_list = ["python", "hangman", "code", "programming"]
+# List of words for the game 
+word_list = ["giraffe", "zebra", "hippopotimous", "bananatree", "jungle"]
 
-# Start the game
 play_game(word_list)
